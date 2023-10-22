@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/providers/app_provider.dart';
 import 'package:news_app/ui/screens/home/home_screen.dart';
 import 'package:news_app/ui/screens/splash/splash_screen.dart';
 import 'package:news_app/ui/utils/app_colors.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => AppProvider(),
+      child: const MyApp()
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
