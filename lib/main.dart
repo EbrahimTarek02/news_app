@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/ui/screens/home/home_screen.dart';
 import 'package:news_app/ui/screens/splash/splash_screen.dart';
+import 'package:news_app/ui/utils/app_colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +21,19 @@ class MyApp extends StatelessWidget {
       },
 
       initialRoute: SplashScreen.routeName,
+
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppColors.primary,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(35.0),
+                  bottomLeft: Radius.circular(35.0)
+              )
+          ),
+          centerTitle: true,
+        )
+      ),
     );
   }
 }
