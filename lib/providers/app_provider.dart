@@ -14,4 +14,18 @@ class AppProvider extends ChangeNotifier {
     appBarTitle = newTitle;
     notifyListeners();
   }
+
+ late String category;
+
+  void changeCategory(newCategory) {
+    category = newCategory;
+    notifyListeners();
+  }
+
+  int tabBarIndex = 0;
+
+  void changeTabBarIndex(int newIndex) {
+    tabBarIndex = newIndex;
+    notifyListeners();
+  }
 }

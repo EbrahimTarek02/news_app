@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:news_app/models/categoriesDM/categories_data_model.dart';
 import 'package:news_app/providers/app_provider.dart';
 import 'package:news_app/ui/utils/app_assets.dart';
 import 'package:news_app/ui/utils/app_colors.dart';
 import 'package:provider/provider.dart';
+import '../../../../../data/models/categoriesDM/categories_data_model.dart';
 
 class CategoriesTab extends StatelessWidget {
 
@@ -47,8 +47,10 @@ class CategoriesTab extends StatelessWidget {
               ),
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
+                  provider.changeCategory(categories[index].topic.toLowerCase());
                   provider.changeCurrentIndex(1);
                   provider.changeAppBarTitle(categories[index].topic);
+                  provider.changeTabBarIndex(0);
                 },
                 child: gridViewItem(
                   context: context,
@@ -58,6 +60,7 @@ class CategoriesTab extends StatelessWidget {
                   index: index
                 ),
               ),
+              itemCount: categories.length,
             ),
           ),
         ],
