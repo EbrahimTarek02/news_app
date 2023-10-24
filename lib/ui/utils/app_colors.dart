@@ -11,4 +11,5 @@ abstract class AppColors {
   static const Color yellow = Color(0xffF2D352);
   static const Color textColor = Color(0xff4F5A69);
   static const Color transparent = Colors.transparent;
+  static const Color smallTextColor = Color(0xffA3A3A3);
 }

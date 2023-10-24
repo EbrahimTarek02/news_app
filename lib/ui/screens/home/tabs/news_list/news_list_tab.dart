@@ -19,6 +19,7 @@ class NewsListTab extends StatelessWidget {
       future: ApiManager.getSources(provider.category),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
+          print(snapshot.error);
           return Center(child: Text('error'),);
         }
         else if (snapshot.hasData) {

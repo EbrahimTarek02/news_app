@@ -17,6 +17,7 @@ abstract class ApiManager {
       if (response.statusCode >= 200 && response.statusCode < 300 && sourcesResponse.sources?.isNotEmpty == true){
         return sourcesResponse.sources!;
       }
+      print(response.statusCode);
       throw Exception(sourcesResponse.message);
     }
     catch(e) {
