@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/data/models/articlesDM/ArticlesResponse.dart';
 import 'package:news_app/providers/app_provider.dart';
+import 'package:news_app/ui/screens/article_web_view/article_web_view_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../../utils/app_assets.dart';
 import '../../utils/app_colors.dart';
 
@@ -116,7 +118,9 @@ class ArticleScreen extends StatelessWidget {
                           ),
                           article.content != null ?
                             GestureDetector(
-                            onTap: (){},
+                            onTap: (){
+                              Navigator.pushNamed(context, ArticleWebViewScreen.routeName, arguments: article.url);
+                            },
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
