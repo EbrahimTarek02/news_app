@@ -28,4 +28,19 @@ class AppProvider extends ChangeNotifier {
     tabBarIndex = newIndex;
     notifyListeners();
   }
+
+  void clearSearch(TextEditingController searchText) {
+    searchText.clear();
+    notifyListeners();
+  }
+
+
+  String changeSearch(String newValue) {
+    notifyListeners();
+    return newValue;
+  }
+
+  void refresh(){
+    notifyListeners();
+  }
 }

@@ -5,6 +5,7 @@ import 'package:news_app/providers/app_provider.dart';
 import 'package:news_app/ui/screens/home/tabs/categories/categories_tab.dart';
 import 'package:news_app/ui/screens/home/tabs/news_list/news_list_tab.dart';
 import 'package:news_app/ui/screens/home/tabs/settings/settings_tab.dart';
+import 'package:news_app/ui/screens/search/search_screen.dart';
 import 'package:news_app/ui/utils/app_assets.dart';
 import 'package:news_app/ui/utils/app_colors.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +41,9 @@ class HomeScreen extends StatelessWidget {
             ),
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, SearchScreen.routeName);
+                },
                 icon: Icon(
                   Icons.search,
                   size: 34,

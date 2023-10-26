@@ -3,6 +3,7 @@ import 'package:news_app/providers/app_provider.dart';
 import 'package:news_app/ui/screens/article/article_screen.dart';
 import 'package:news_app/ui/screens/article_web_view/article_web_view_screen.dart';
 import 'package:news_app/ui/screens/home/home_screen.dart';
+import 'package:news_app/ui/screens/search/search_screen.dart';
 import 'package:news_app/ui/screens/splash/splash_screen.dart';
 import 'package:news_app/ui/utils/app_colors.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
         SplashScreen.routeName : (_) => SplashScreen(),
         HomeScreen.routeName : (_) => HomeScreen(),
         ArticleScreen.routeName : (_) => ArticleScreen(),
-        ArticleWebViewScreen.routeName : (_) => ArticleWebViewScreen()
+        ArticleWebViewScreen.routeName : (_) => ArticleWebViewScreen(),
+        SearchScreen.routeName : (_) => SearchScreen()
       },
 
       initialRoute: SplashScreen.routeName,
