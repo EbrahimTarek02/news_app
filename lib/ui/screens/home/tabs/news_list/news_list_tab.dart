@@ -1,9 +1,10 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/data/apis/api_manager/api_manager.dart';
 import 'package:news_app/providers/app_provider.dart';
 import 'package:news_app/ui/common/article_item_builder/article_item_builder.dart';
+import 'package:news_app/ui/common/error_widget/error_widget.dart';
+import 'package:news_app/ui/common/loading_widget/loading_widget.dart';
 import 'package:news_app/ui/utils/app_colors.dart';
 import 'package:provider/provider.dart';
 import '../../../../../data/models/sourcesDM/SourcesResponse.dart';
@@ -21,13 +22,14 @@ class NewsListTab extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           print(snapshot.error);
-          return Center(child: Text('error'),);
+          return MyErrorWidget(errorMessage: 'Something went wrong please try again later.',);
         }
         else if (snapshot.hasData) {
+          print(snapshot.data);
           return newsListBuilder(snapshot.data!);
         }
         else{
-          return Center(child: CircularProgressIndicator());
+          return MyLoadingWidget();
         }
       },
     );
@@ -54,37 +56,29 @@ class NewsListTab extends StatelessWidget {
   Widget tabBarBuilder(List<Sources> sources) {
     return TabBar(
       isScrollable: true,
-      indicatorColor: AppColors.transparent,
-      onTap: (newIndex) => provider.changeTabBarIndex(newIndex),
+      indicator: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      indicatorPadding: EdgeInsets.all(10.0),
 
       tabs: sources.map((e) => Container(
         padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
         decoration: BoxDecoration(
-          color: sources[provider.tabBarIndex].name != e.name ?
-              AppColors.transparent
-                :
-              AppColors.primary
-          ,
+          color: AppColors.transparent,
           borderRadius: BorderRadius.circular(20.0),
-          border: sources[provider.tabBarIndex].name != e.name ?
-              Border.all(
-                color: AppColors.primary,
-                width: 2
-              )
-                :
-              null
-          ,
-
+          border:
+            Border.all(
+              color: AppColors.primary,
+              width: 2
+            ),
         ),
         child: Text(
           e.name.toString(),
           style: GoogleFonts.exo(
             textStyle: TextStyle(
               fontSize: 14.0,
-              color: sources[provider.tabBarIndex].name != e.name ?
-                  AppColors.primary
-                    :
-                  AppColors.accent
+              color: Colors.black
             )
           ),
         ),

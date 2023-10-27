@@ -8,7 +8,8 @@ abstract class ApiManager {
     try {
       const String baseUrl = 'https://newsapi.org/';
       const String sourcesEndPoint = 'v2/top-headlines/sources';
-      const String apiKey = 'cd5018f132494c89808207d7534ca5f8';
+      // const String apiKey = 'cd5018f132494c89808207d7534ca5f8';
+      const String apiKey = '06113bb6ec544ddc83dac0645693f2a4';
       String url = '${baseUrl}${sourcesEndPoint}?category=${category}&apiKey=${apiKey}';
       http.Response response = await http.get(Uri.parse(url));
       Map<String, dynamic> json = jsonDecode(response.body);
@@ -28,7 +29,8 @@ abstract class ApiManager {
     try {
       const String baseUrl = 'https://newsapi.org/';
       const String articlesEndPoint = 'v2/top-headlines';
-      const String apiKey = 'cd5018f132494c89808207d7534ca5f8';
+      // const String apiKey = 'cd5018f132494c89808207d7534ca5f8';
+      const String apiKey = '06113bb6ec544ddc83dac0645693f2a4';
       String url = '${baseUrl}${articlesEndPoint}?sources=${sourceId}&apiKey=${apiKey}';
       http.Response articlesResponse = await http.get(Uri.parse(url));
 
@@ -49,7 +51,8 @@ abstract class ApiManager {
     try{
       const String baseUrl = 'https://newsapi.org/';
       const String articlesEndPoint = 'v2/top-headlines';
-      const String apiKey = 'cd5018f132494c89808207d7534ca5f8';
+      // const String apiKey = 'cd5018f132494c89808207d7534ca5f8';
+      const String apiKey = '06113bb6ec544ddc83dac0645693f2a4';
       String url = '${baseUrl}${articlesEndPoint}?q=${searchKeyword}&apiKey=${apiKey}';
       http.Response response = await http.get(Uri.parse(url));
 

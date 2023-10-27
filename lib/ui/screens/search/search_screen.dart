@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/data/apis/api_manager/api_manager.dart';
 import 'package:news_app/data/models/articlesDM/ArticlesResponse.dart';
 import 'package:news_app/providers/app_provider.dart';
+import 'package:news_app/ui/common/error_widget/error_widget.dart';
+import 'package:news_app/ui/common/loading_widget/loading_widget.dart';
 import 'package:provider/provider.dart';
 import '../../utils/app_assets.dart';
 import '../../utils/app_colors.dart';
@@ -94,7 +96,6 @@ class SearchScreen extends StatelessWidget {
   Widget searchListBuilder(AsyncSnapshot snapshot, BuildContext context) {
     ArticlesResponse? articlesResponse = snapshot.data;
     if (snapshot.hasData) {
-      print('has Data');
       return ListView.builder(
         itemCount: snapshot.data!.totalResults,
         padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -120,7 +121,7 @@ class SearchScreen extends StatelessWidget {
                           Image.network(
                               'https://static.vecteezy.com/system/resources/previews/009/007/136/non_2x/failed-to-load-error-page-404-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector.jpg'),
                       placeholder: (_, __) =>
-                          Center(child: CircularProgressIndicator(),),
+                          MyLoadingWidget(),
                       height: MediaQuery
                           .of(context)
                           .size
@@ -181,10 +182,10 @@ class SearchScreen extends StatelessWidget {
       );
     }
     else if (snapshot.hasError) {
-      return Center(child: Text('Nothing was Found'),);
+      return MyErrorWidget(errorMessage: 'Noting was Found!');
     }
     else {
-      return Center(child: CircularProgressIndicator(),);
+      return MyLoadingWidget();
     }
   }
 }

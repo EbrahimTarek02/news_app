@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:news_app/data/apis/api_manager/api_manager.dart';
 import 'package:news_app/providers/app_provider.dart';
 import 'package:news_app/ui/screens/home/tabs/categories/categories_tab.dart';
 import 'package:news_app/ui/screens/home/tabs/news_list/news_list_tab.dart';
@@ -18,7 +17,7 @@ class HomeScreen extends StatelessWidget {
   List<Widget> screens = [
     CategoriesTab(),
     NewsListTab(),
-    SettingsTab()
+    SettingsTab(),
   ];
 
   @override

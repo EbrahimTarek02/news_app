@@ -104,11 +104,12 @@ class CategoriesTab extends StatelessWidget {
               topic,
               style: GoogleFonts.exo(
                 textStyle: TextStyle(
-                  fontSize: 22,
+                  fontSize: 20,
                   fontWeight: FontWeight.normal,
-                  color: AppColors.accent
+                  color: AppColors.accent,
                 ),
               ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
