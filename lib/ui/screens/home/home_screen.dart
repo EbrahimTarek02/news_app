@@ -24,83 +24,94 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     provider = Provider.of(context);
 
-    return Stack(
-      children: [
-        Image.asset(AppAssets.background, fit: BoxFit.cover, width: double.infinity,),
-        Scaffold(
-          backgroundColor: AppColors.transparent,
-          appBar: AppBar(
-            title: Text(
-              provider.appBarTitle,
-              style: GoogleFonts.exo(
-                textStyle: TextStyle(
-                  fontSize: 22
-                ),
-              ),
-            ),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, SearchScreen.routeName);
-                },
-                icon: Icon(
-                  Icons.search,
-                  size: 34,
-                ),
-              ),
-            ],
-          ),
-          drawer: Drawer(
-            backgroundColor: AppColors.accent,
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    color: AppColors.primary,
-                    child: Center(
-                      child: Text(
-                        'News App',
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                            fontSize: 28,
-                            color: AppColors.accent,
-                            fontWeight: FontWeight.w600
-                          )
-                        ),
-                      ),
-                    ),
+    return WillPopScope(
+      onWillPop: () {
+        if(provider.currentIndex == 0) {
+          return Future.value(true);
+        }
+        else {
+          provider.changeCurrentIndex(0);
+          return Future.value(false);
+        }
+      },
+      child: Stack(
+        children: [
+          Image.asset(AppAssets.background, fit: BoxFit.cover, width: double.infinity,),
+          Scaffold(
+            backgroundColor: AppColors.transparent,
+            appBar: AppBar(
+              title: Text(
+                provider.appBarTitle,
+                style: GoogleFonts.exo(
+                  textStyle: TextStyle(
+                    fontSize: 22
                   ),
                 ),
-                Expanded(
-                  flex: 8,
-                  child: Column(
-                    children: [
-                      InkWell(
-                        child: drawerItemBuilder(icon: Icons.list, text: 'Categories'),
-                        onTap: () {
-                          provider.changeCurrentIndex(0);
-                          provider.changeAppBarTitle('News App');
-                          Navigator.pop(context);
-                        },
-                      ),
-                      InkWell(
-                        child: drawerItemBuilder(icon: Icons.settings, text: 'Settings'),
-                        onTap: () {
-                          provider.changeCurrentIndex(2);
-                          provider.changeAppBarTitle('Settings');
-                          Navigator.pop(context);
-                        },
-                      ),
-                    ],
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, SearchScreen.routeName);
+                  },
+                  icon: Icon(
+                    Icons.search,
+                    size: 34,
                   ),
                 ),
               ],
             ),
+            drawer: Drawer(
+              backgroundColor: AppColors.accent,
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      color: AppColors.primary,
+                      child: Center(
+                        child: Text(
+                          'News App',
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                              fontSize: 28,
+                              color: AppColors.accent,
+                              fontWeight: FontWeight.w600
+                            )
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 8,
+                    child: Column(
+                      children: [
+                        InkWell(
+                          child: drawerItemBuilder(icon: Icons.list, text: 'Categories'),
+                          onTap: () {
+                            provider.changeCurrentIndex(0);
+                            provider.changeAppBarTitle('News App');
+                            Navigator.pop(context);
+                          },
+                        ),
+                        InkWell(
+                          child: drawerItemBuilder(icon: Icons.settings, text: 'Settings'),
+                          onTap: () {
+                            provider.changeCurrentIndex(2);
+                            provider.changeAppBarTitle('Settings');
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            body: screens[provider.currentIndex],
           ),
-          body: screens[provider.currentIndex],
-        ),
-      ],
+        ],
+      ),
     );
   }
 
